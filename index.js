@@ -14,7 +14,7 @@ client.connect()
 app.use('/', router)
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the bookstore api')
+    res.json({status: 'success', message: 'Welcome to the bookstore api'})
 })
 
 app.listen(port, () => {

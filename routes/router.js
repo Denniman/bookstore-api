@@ -6,7 +6,7 @@ const router = express.Router()
 router.route('/books')
 .get(async (req, res) => {
     try {
-        const getBooks = await client.query(`SELECT * FROM book`)
+        const getBooks = await client.query(`SELECT * FROM book ORDER BY id ASC`)
         res.send({message: 'Successful', data: getBooks.rows})
     } catch (err) {
         console.log(err.message)
