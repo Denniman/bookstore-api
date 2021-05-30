@@ -35,18 +35,16 @@ router.route('/books/:bookid')
         if(title) {
             await client.query(`UPDATE book SET title = $1 WHERE id = $2`,
             [title, bookid])
-            res.send({message: 'Book updated successfully!'})
         } 
         if(author) {
             await client.query(`UPDATE book SET author = $1 WHERE id = $2`,
             [ author, bookid])
-            res.send({message: 'Book updated successfully!'})
         }
         if(published_year) {
             await client.query(`UPDATE book SET published_year = $1 WHERE id = $2`,
             [published_year, bookid])
-            res.send({message: 'Book updated successfully!'})
         }
+        res.send({message: 'Book updated successfully!'})
       
     } catch (err) {
         console.log(err.message)
