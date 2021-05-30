@@ -32,7 +32,7 @@ router.route('/books/:bookid')
     const { bookid } = req.params
     const { title, author, published_year } = req.body
     try {
-        const updatedBook = await client.query(`UPDATE book SET title = $1, author = $2, published_year = $3 WHERE id = $4`,
+        await client.query(`UPDATE book SET title = $1, author = $2, published_year = $3 WHERE id = $4`,
         [title, author, published_year, bookid])
         res.send({message: 'Book updated successfully!'})
     } catch (err) {
