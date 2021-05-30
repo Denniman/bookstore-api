@@ -28,13 +28,26 @@ router.route('/books')
 
 // edit a book
 router.route('/books/:bookid')
-.put(async (req, res) => {
+.patch(async (req, res) => {
     const { bookid } = req.params
     const { title, author, published_year } = req.body
     try {
-        await client.query(`UPDATE book SET title = $1, author = $2, published_year = $3 WHERE id = $4`,
-        [title, author, published_year, bookid])
-        res.send({message: 'Book updated successfully!'})
+        if(title) {
+            await client.query(`UPDATE book SET title = $1 WHERE id = $2`,
+            [title, bookid])
+            res.send({message: 'Book updated successfully!'})
+        } 
+        if(author) {
+            await client.query(`UPDATE book SET author = $1 WHERE id = $2`,
+            [ author, bookid])
+            res.send({message: 'Book updated successfully!'})
+        }
+        if(published_year) {
+            await client.query(`UPDATE book SET published_year = $1 WHERE id = $2`,
+            [published_year, bookid])
+            res.send({message: 'Book updated successfully!'})
+        }
+      
     } catch (err) {
         console.log(err.message)
     }
