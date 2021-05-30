@@ -35,7 +35,7 @@ router.route('/books/:bookid')
         await client.query(`UPDATE book SET title = $1, author = $2, published_year = $3 WHERE id = $4`,
         [title, author, published_year, bookid])
     } catch (err) {
-        console.log(err)
+        console.log(err.message)
     }
 })
 // delete a book
@@ -45,7 +45,7 @@ router.route('/books/:bookid')
         await client.query(`DELETE FROM book WHERE id = $1`, [bookid])
         res.json({message: 'Book deleted successfully'})
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
 })
 
