@@ -27,7 +27,7 @@ router.route('/books')
 })
 
 // edit a book
-router.route('/books/:bookid')
+router.route('/books/edit/:bookid')
 .patch(async (req, res) => {
     const { bookid } = req.params
     const { title, author, published_year } = req.body
@@ -51,6 +51,7 @@ router.route('/books/:bookid')
     }
 })
 // delete a book
+router.route('/books/delete/:bookid')
 .delete(async (req, res) => {
     const { bookid } = req.params
     try {
